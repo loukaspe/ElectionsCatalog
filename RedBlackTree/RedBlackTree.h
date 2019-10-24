@@ -6,7 +6,7 @@
 #ifndef UNTITLED_REDBLACKTREE_H
 #define UNTITLED_REDBLACKTREE_H
 
-#include "Node.h"
+#include "RedBlackTreeNode.h"
 // TODO remove queue and levelorder in order after checking that works
 #include <queue>
 #include <iostream>
@@ -16,28 +16,28 @@ using namespace std;
 class RedBlackTree {
 
 public:
-    Node* root;
+    RedBlackTreeNode* root;
     RedBlackTree();
-    Node* getRoot();
+    RedBlackTreeNode* getRoot();
     int getSize();
-    Node* searchForVoter(Voter*);
+    RedBlackTreeNode* searchForVoter(Voter*);
     void insertVoterToTree(Voter*);
     void deleteVoterFromTree(Voter*);
     void printInOrder();
     void printLevelOrder();
 private:
     int size;
-    void rotateLeft(Node*);
-    void rotateRight(Node*);
-    void swapColorsBetweenNodes(Node*, Node*);
-    void swapVotersBetweenNodes(Node*, Node*);
-    void fixAdjacentRedNodesViolation(Node*);
-    Node* findSuccessorInSubTree(Node*);
-    Node* findNodeToReplaceDeletedNodeInBST(Node*);
-    void deleteNode(Node*);
-    void convertDoubleBlackChildToSingleAfterDeletion(Node*);
-    void levelOrder(Node *x);
-    void inorder(Node *x);
+    void rotateLeft(RedBlackTreeNode*);
+    void rotateRight(RedBlackTreeNode*);
+    void swapColorsBetweenNodes(RedBlackTreeNode*, RedBlackTreeNode*);
+    void swapVotersBetweenNodes(RedBlackTreeNode*, RedBlackTreeNode*);
+    void fixAdjacentRedNodesViolation(RedBlackTreeNode*);
+    RedBlackTreeNode* findSuccessorInSubTree(RedBlackTreeNode*);
+    RedBlackTreeNode* findNodeToReplaceDeletedNodeInBST(RedBlackTreeNode*);
+    void deleteNode(RedBlackTreeNode*);
+    void convertDoubleBlackChildToSingleAfterDeletion(RedBlackTreeNode*);
+    void levelOrder(RedBlackTreeNode *x);
+    void inorder(RedBlackTreeNode *x);
 };
 
 #endif //UNTITLED_REDBLACKTREE_H

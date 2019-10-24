@@ -1,7 +1,7 @@
 /* Based on RBT implemented by GeeksForGeeks here
  * https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/ */
 
-/* Each Node will has as data a Voter, using it's ID as key */
+/* Each RedBlackTreeNode will has as data a Voter, using it's ID as key */
 
 #ifndef UNTITLED_NODE_H
 #define UNTITLED_NODE_H
@@ -11,19 +11,19 @@
 
 enum COLOR { RED, BLACK };
 
-class Node {
+class RedBlackTreeNode {
     public:
         Voter* voter;
         COLOR color;
-        Node* left;
-        Node* right;
-        Node* parent;
+        RedBlackTreeNode* left;
+        RedBlackTreeNode* right;
+        RedBlackTreeNode* parent;
 
-        Node(Voter*);
-        Node* getUncle();
+        RedBlackTreeNode(Voter*);
+        RedBlackTreeNode* getUncle();
         bool isLeftChild();
-        Node* getSibling();
-        void becomeChildOf(Node* newParent);
+        RedBlackTreeNode* getSibling();
+        void becomeChildOf(RedBlackTreeNode* newParent);
         bool hasRedChild();
 
 };

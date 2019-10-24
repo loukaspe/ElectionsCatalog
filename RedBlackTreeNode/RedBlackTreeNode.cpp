@@ -1,6 +1,6 @@
-#include "Node.h"
+#include "RedBlackTreeNode.h"
 
-Node::Node(Voter* voter) {
+RedBlackTreeNode::RedBlackTreeNode(Voter* voter) {
     this->voter = (Voter*) malloc( sizeof(Voter) );
     this->voter = new Voter(voter);
 
@@ -12,12 +12,12 @@ Node::Node(Voter* voter) {
 }
 
 
-bool Node::isLeftChild() {
+bool RedBlackTreeNode::isLeftChild() {
     return this == parent->left;
 }
 
-Node* Node::getUncle() {
-    Node* grandparent = parent->parent;
+RedBlackTreeNode* RedBlackTreeNode::getUncle() {
+    RedBlackTreeNode* grandparent = parent->parent;
 
     if(parent == nullptr || grandparent == nullptr) {
         return nullptr;
@@ -30,7 +30,7 @@ Node* Node::getUncle() {
     return grandparent->left;
 }
 
-Node* Node::getSibling() {
+RedBlackTreeNode* RedBlackTreeNode::getSibling() {
     if(parent == nullptr) {
         return nullptr;
     }
@@ -42,7 +42,7 @@ Node* Node::getSibling() {
     return parent->left;
 }
 
-void Node::becomeChildOf(Node *newParent) {
+void RedBlackTreeNode::becomeChildOf(RedBlackTreeNode *newParent) {
     if(parent != nullptr) {
         if( isLeftChild() ) {
             parent->left = newParent;
@@ -55,7 +55,7 @@ void Node::becomeChildOf(Node *newParent) {
     parent = newParent;
 }
 
-bool Node::hasRedChild() {
+bool RedBlackTreeNode::hasRedChild() {
     bool isRightChildRed = (right != nullptr && right->color == RED);
     bool isleftChildRed = (left != nullptr && left->color == RED);
 

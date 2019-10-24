@@ -22,15 +22,12 @@ int main(int argc, char *argv[]) {
         switch (opt) {
             case 'i':
                 inputFilename = Helper::copyString(optarg);
-                //cout << inputFilename << endl;
                 break;
             case 'o':
                 outputFilename = Helper::copyString(optarg);
-                //cout << outputFilename << endl;
                 break;
             case 'n':
                 numOfUpdates = atoi(optarg);
-                //cout << numOfUpdates << endl;
                 break;
             default:
                 Helper::handleError(WRONG_PROGRAM_USAGE_ERROR);
@@ -40,13 +37,13 @@ int main(int argc, char *argv[]) {
     RedBlackTree* votersRBTree = new RedBlackTree();
     BloomFilter* votersBloomFilter;
     PostalCodesLinkedList* postalCodesLinkedList = new PostalCodesLinkedList();
+
     RegistryReader* registryReader = new RegistryReader(
         inputFilename,
         votersRBTree,
         votersBloomFilter,
         postalCodesLinkedList
     );
-
     registryReader->readAndUpdateStructures();
 
     votersRBTree->printInOrder();

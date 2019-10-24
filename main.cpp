@@ -3,6 +3,7 @@
 #include "BitArray.h"
 #include "RedBlackTree.h"
 #include "BloomFilterFactory.h"
+#include "PostalCodesLinkedList/PostalCodesLinkedList.h"
 
 using namespace std;
 
@@ -58,6 +59,10 @@ int main(int argc, char *argv[]) {
 
     RedBlackTree* votersRBTree = new RedBlackTree();
     BloomFilter* votersBloomFilter;
+    PostalCodesLinkedList* postalCodesLinkedList = new PostalCodesLinkedList();
+    PostalCodesLinkedListNode* tempPostalCodesNode = (
+            PostalCodesLinkedListNode*
+    ) malloc( sizeof(PostalCodesLinkedListNode) );
 
     inputFile = fopen(inputFilename, OPEN_FILE_READ_MODE);
     if(inputFile == nullptr) {
@@ -97,11 +102,26 @@ int main(int argc, char *argv[]) {
         );
 
         votersRBTree->insertVoterToTree(newVoter);
+
+        tempPostalCodesNode = postalCodesLinkedList->findNodeWithPostalCode(
+                postalCode
+        );
+
+        if(tempPostalCodesNode == nullptr) {
+            postalCodesLinkedList->addAtStart(postalCode);
+            tempPostalCodesNode = postalCodesLinkedList->findNodeWithPostalCode(
+                    postalCode
+            );
+        }
+
+        tempPostalCodesNode->list->addAtStart(
+                votersRBTree->searchForVoter(newVoter)
+        );
     }
 
     votersRBTree->printInOrder();
     votersBloomFilter = BloomFilterFactory::getFromRedBlackTree(votersRBTree);
-
+    postalCodesLinkedList->print();
     if( ferror(inputFile) ) {
         Helper::handleError(ERROR_IN_READING_FILE);
     }

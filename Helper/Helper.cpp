@@ -88,3 +88,42 @@ bool Helper::isPrime(int n) {
 
     return true;
 }
+
+bool Helper::inArray(char* needle, char** haystack, int haystackSize) {
+    int i;
+    for( i = 0; i < haystackSize; i++) {
+        if( strcmp( needle, haystack[i] ) == 0 ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Helper::hasStringNewLineCharacterInTheEnd(char* string) {
+    int length = strlen(string);
+    return string[length - 1] == '\n';
+}
+
+char* Helper::removeNewLineCharacterFromString(char* string) {
+    if( hasStringNewLineCharacterInTheEnd(string) ) {
+        int length = strlen(string);
+        char* stringWithoutNewLine = (char*) malloc(
+                length * sizeof(char)
+        );
+
+        int i;
+        for( i = 0; i < length; i++) {
+            if(string[i] == '\n') {
+                stringWithoutNewLine[i] = '\0';
+                continue;
+            }
+
+            stringWithoutNewLine[i] = string[i];
+        }
+
+        return stringWithoutNewLine;
+    }
+
+    return string;
+}

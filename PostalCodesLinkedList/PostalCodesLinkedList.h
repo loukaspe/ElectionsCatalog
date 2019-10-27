@@ -12,7 +12,7 @@
 #include <iostream>
 #include "PostalCodesLinkedListNode/PostalCodesLinkedListNode.h"
 #include <cstring>
-#include <assert.h>
+#include <cassert>
 
 class PostalCodesLinkedList {
 public:
@@ -21,7 +21,12 @@ public:
     void addAtStart(int);
     void deleteNodeWithPostalCode(int);
     void deleteAll();
+    void deleteVoterWithId(int, char*);
+    void getPercentageOfVotersThatHaveVotedForEveryPostalCode();
     int getSize();
+    int getHowManyVotersHaveVotedInPostalCode(int);
+    int getVotersInPostalCode(int);
+    double getPercentageOfVotersThatHaveVotedInPostalCode(int);
     bool isEmpty();
     PostalCodesLinkedListNode* findNodeWithPostalCode(int);
 private:

@@ -34,6 +34,7 @@ void PostalCodesLinkedList::deleteNodeWithPostalCode(int postalCode) {
     while( postalCode == current->postalCode) {
 
         if(current->next == nullptr) {
+            free(current->list);
             free(current);
             this->size--;
             return;
@@ -45,6 +46,7 @@ void PostalCodesLinkedList::deleteNodeWithPostalCode(int postalCode) {
 
     if(current == head) {
         head = head->next;
+        free(current->list);
         free(current);
         this->size--;
         return;
@@ -53,6 +55,18 @@ void PostalCodesLinkedList::deleteNodeWithPostalCode(int postalCode) {
     previous->next = current->next;
     free(current);
     this->size--;
+}
+
+void PostalCodesLinkedList::deleteVoterWithId(int postalCode, char* key) {
+
+    int a = 2;
+    PostalCodesLinkedListNode* postalCodesLinkedListNode = findNodeWithPostalCode(
+            postalCode
+    );
+
+    if(postalCodesLinkedListNode != nullptr) {
+        postalCodesLinkedListNode->list->deleteNodeWithId(key);
+    }
 }
 
 void PostalCodesLinkedList::deleteAll() {
@@ -97,3 +111,66 @@ PostalCodesLinkedListNode* PostalCodesLinkedList::findNodeWithPostalCode(
 
     return nullptr;
 }
+
+int PostalCodesLinkedList::getHowManyVotersHaveVotedInPostalCode(int postalCode) {
+    PostalCodesLinkedListNode* node = findNodeWithPostalCode(postalCode);
+    if(node == nullptr) {
+        return -1;
+    }
+
+    return node->list->getHowManyVotersHaveVoted();
+}
+
+int PostalCodesLinkedList::getVotersInPostalCode(int postalCode) {
+    PostalCodesLinkedListNode* node = findNodeWithPostalCode(postalCode);
+    if(node == nullptr) {
+        return -1;
+    }
+
+    return node->list->getSize();
+}
+
+double PostalCodesLinkedList::getPercentageOfVotersThatHaveVotedInPostalCode(
+        int postalCode
+) {
+    PostalCodesLinkedListNode* node = findNodeWithPostalCode(postalCode);
+    if(node == nullptr) {
+        return -1;
+    }
+
+    double votersThatHaveVoted = (double) getHowManyVotersHaveVotedInPostalCode(
+            postalCode
+    );
+
+    double totalsVoters = (double) getVotersInPostalCode(postalCode);
+
+    return (double)(votersThatHaveVoted/totalsVoters);
+}
+
+void PostalCodesLinkedList::getPercentageOfVotersThatHaveVotedForEveryPostalCode()
+ {
+    PostalCodesLinkedListNode* current = this->head;
+    double votersThatHaveVoted;
+    double totalVoters;
+    double percentage;
+
+    while( current != nullptr ) {
+
+        int postalCode = current->postalCode;
+
+        votersThatHaveVoted = (double) getHowManyVotersHaveVotedInPostalCode(
+                postalCode
+        );
+
+        totalVoters = (double) getVotersInPostalCode(postalCode);
+
+        assert(totalVoters != 0);
+
+        percentage =  (double)(votersThatHaveVoted/totalVoters);
+
+        cout << "In postal code " << postalCode << ", the percantage of voters"
+           << " who have voted is " << percentage << "%." << endl;
+
+        current = current->next;
+    }
+ }

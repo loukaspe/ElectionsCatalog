@@ -16,10 +16,13 @@ class Helper {
         static char* concatString(char*, char*);
         static void handleError(const char*);
         static int findFirstPrimeLargerThan(int);
+        static bool inArray(char*, char**, int);
+        static char* removeNewLineCharacterFromString(char*);
     private:
         static const char* STRING_COPY_ERROR;
         static const char* STRING_CONCAT_ERROR;
         static bool isPrime(int);
+        static bool hasStringNewLineCharacterInTheEnd(char*);
 };
 
 

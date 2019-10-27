@@ -20,13 +20,17 @@ public:
     RedBlackTree();
     RedBlackTreeNode* getRoot();
     int getSize();
+    int getVotersThatHaveVoted();
     RedBlackTreeNode* searchForVoter(Voter*);
+    Voter* findVoterWith(char*);
     void insertVoterToTree(Voter*);
     void deleteVoterFromTree(Voter*);
     void printInOrder();
     void printLevelOrder();
+    void voteOfVoterWith(char*);
 private:
     int size;
+    int votersThatHaveVoted;
     void rotateLeft(RedBlackTreeNode*);
     void rotateRight(RedBlackTreeNode*);
     void swapColorsBetweenNodes(RedBlackTreeNode*, RedBlackTreeNode*);

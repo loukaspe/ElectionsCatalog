@@ -3,7 +3,7 @@
 BloomFilter* BloomFilterFactory::getFromRedBlackTree(RedBlackTree* Voters) {
     int numberOfVoters = Voters->getSize();
 
-    // Optiman Size for the Bloom Filter according to http://cgi.di.uoa.gr/~ad/k22/Bloom_Filters.pdf
+    // Optimal Size for the Bloom Filter according to http://cgi.di.uoa.gr/~ad/k22/Bloom_Filters.pdf
     // Section 6 is prime p >= 3 * R
     int size = Helper::findFirstPrimeLargerThan(3 * numberOfVoters);
 

@@ -8,7 +8,13 @@ public:
         Voter(char*, char*, char*, int, char, int, bool);
         Voter(Voter*);
         void vote();
-        char* getId();
+        char* getId() const;
+        char *getFirstName() const;
+        char *getLastName() const;
+        int getAge() const;
+        char getGender() const;
+        int getPostalCode() const;
+        bool getHasVoted() const;
     private:
         char* id;
         char* firstName;

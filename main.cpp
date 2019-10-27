@@ -5,6 +5,7 @@
 #include "RedBlackTree.h"
 #include "BloomFilterFactory.h"
 #include "PostalCodesLinkedList/PostalCodesLinkedList.h"
+#include "MenuPromptCreator/MenuPromptCreator.h"
 
 using namespace std;
 
@@ -13,6 +14,10 @@ const char* WRONG_PROGRAM_USAGE_ERROR = "Usage %s -i [inputfile] -o [output file
 
 int main(int argc, char *argv[]) {
     int opt;
+
+    RedBlackTree* votersRBTree = new RedBlackTree();
+    BloomFilter* votersBloomFilter;
+    PostalCodesLinkedList* postalCodesLinkedList = new PostalCodesLinkedList();
 
     char* inputFilename;
     char* outputFilename;
@@ -34,20 +39,24 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    RedBlackTree* votersRBTree = new RedBlackTree();
-    BloomFilter* votersBloomFilter;
-    PostalCodesLinkedList* postalCodesLinkedList = new PostalCodesLinkedList();
-
     RegistryReader* registryReader = new RegistryReader(
         inputFilename,
         votersRBTree,
         votersBloomFilter,
         postalCodesLinkedList
     );
-    registryReader->readAndUpdateStructures();
+    votersBloomFilter = registryReader->readAndUpdateStructures();
 
-    votersRBTree->printInOrder();
-    postalCodesLinkedList->print();
+    MenuPromptCreator* menuPromptCreator = new MenuPromptCreator(
+        votersRBTree,
+        votersBloomFilter,
+        postalCodesLinkedList,
+        numOfUpdates
+    );
+
+    menuPromptCreator->create();
+    //votersRBTree->printInOrder();
+    //postalCodesLinkedList->print();
 
     return 0;
 }

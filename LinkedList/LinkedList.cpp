@@ -32,8 +32,6 @@ void LinkedList::deleteNodeWithId(char* id) {
     while( strcmp( current->voterNode->voter->getId(), id ) != 0 ) {
 
         if(current->next == nullptr) {
-            free(current);
-            this->size--;
             return;
         }
 
@@ -92,4 +90,19 @@ LinkedListNode* LinkedList::findVoterWithId(char* id) {
     }
 
     return nullptr;
+}
+
+int LinkedList::getHowManyVotersHaveVoted() {
+    LinkedListNode* current = this->head;
+    int votersThatHaveVotedNumber = 0;
+
+    while( current != nullptr ) {
+        if( current->voterNode->voter->getHasVoted() ) {
+            votersThatHaveVotedNumber++;
+        }
+
+        current = current->next;
+    }
+
+    return votersThatHaveVotedNumber;
 }

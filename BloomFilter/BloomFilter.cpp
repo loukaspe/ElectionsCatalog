@@ -96,7 +96,6 @@ unsigned long* BloomFilter::getHashDigests(char* key) {
 }
 
 void BloomFilter::add(char* key) {
-    printf("%s", key);
     unsigned long* digests = getHashDigests(key);
     
     for(int i = 0; i < NUMBER_OF_HASH_FUNCTIONS; i++) {

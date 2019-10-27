@@ -21,6 +21,7 @@ class LinkedList {
         int getSize();
         bool isEmpty();
         LinkedListNode* findVoterWithId(char*);
+        int getHowManyVotersHaveVoted();
     private:
         LinkedListNode* head;
         int size;

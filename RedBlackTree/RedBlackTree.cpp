@@ -13,6 +13,31 @@ int RedBlackTree::getSize() {
     return size;
 }
 
+int RedBlackTree::getVotersThatHaveVoted() {
+    return votersThatHaveVoted;
+}
+
+/* Function to be used in the MenuPromptCreator. If no voter exists or voter
+ * has already voted, prints messages*/
+void RedBlackTree::voteOfVoterWith(char* key) {
+    Voter* voter = findVoterWith(key);
+    if(voter == nullptr) {
+        cout << "There is no Voter with id: " << key << endl;
+        return;
+    }
+
+    if( voter->getHasVoted() ) {
+        cout << "Voter with id: " << key << " has already voted " << endl;
+        return;
+    }
+
+    voter->vote();
+    votersThatHaveVoted++;
+}
+
+/* This functions returns the node the Voter was found or where to insert a new
+ * Voter in the tree. Should only be used for insertion search. If search is the
+ * what needed, then use findVoterWith() instead */
 RedBlackTreeNode* RedBlackTree::searchForVoter(Voter* voter)  {
     RedBlackTreeNode* temp = root;
     char* key = Helper::copyString( voter->getId() );
@@ -43,6 +68,40 @@ RedBlackTreeNode* RedBlackTree::searchForVoter(Voter* voter)  {
     return temp;
 }
 
+/* Used to find voter with id key. Returns null if not found */
+Voter* RedBlackTree::findVoterWith(char* key) {
+    RedBlackTreeNode* temp = root;
+    Voter* returnedVoter = nullptr;
+
+    while(temp != nullptr) {
+        if( strcmp( key, temp->voter->getId() ) < 0 ) {
+            if(temp->left == nullptr) {
+                break;
+            }
+
+            temp = temp->left;
+            continue;
+        }
+
+        if( strcmp( key, temp->voter->getId() ) > 0 ) {
+            if(temp->right == nullptr) {
+                break;
+            }
+
+            temp = temp->right;
+            continue;
+        }
+
+        // Key was found
+        if( strcmp( key, temp->voter->getId() ) == 0 ) {
+            returnedVoter = temp->voter;
+            break;
+        }
+    }
+
+    return returnedVoter;
+}
+
 void RedBlackTree::insertVoterToTree(Voter* voter) {
     RedBlackTreeNode* newNode = new RedBlackTreeNode(voter);
 
@@ -60,7 +119,7 @@ void RedBlackTree::insertVoterToTree(Voter* voter) {
 
     // If we find it then return
     if( strcmp( temp->voter->getId(), newNode->voter->getId() ) == 0 ) {
-        //cout << "Voter " << voterNode->getId() << " already in the RBT" << endl;
+        cout << "Voter " << voter->getId() << " already in the RBT" << endl;
         return;
     }
 
@@ -85,6 +144,10 @@ void RedBlackTree::insertVoterToTree(Voter* voter) {
 }
 
 void RedBlackTree::deleteVoterFromTree(Voter* voter) {
+    /* Variable-flag that will reduce the number of Voters who have voted if
+     * the voter to be deleted has voted */
+    bool hasVoterVoted = false;
+
     // If Tree is empty, just return
     if(root == nullptr) {
         return;
@@ -96,8 +159,16 @@ void RedBlackTree::deleteVoterFromTree(Voter* voter) {
         return;
     }
 
+    if( temp->voter->getHasVoted() ) {
+        hasVoterVoted = true;
+    }
+
     deleteNode(temp);
     size--;
+
+    if(hasVoterVoted) {
+        votersThatHaveVoted--;
+    }
 }
 
 // prints inorder of the tree
@@ -282,6 +353,7 @@ void RedBlackTree::deleteNode(RedBlackTreeNode* givenNode) {
         // If givenNode is the root then we make the root null
         if(givenNode == root) {
             root = nullptr;
+            delete givenNode->voter;
             delete givenNode;
             return;
         }
@@ -292,6 +364,7 @@ void RedBlackTree::deleteNode(RedBlackTreeNode* givenNode) {
         if( areBothNodesBlack && givenNode->isLeftChild() ) {
             convertDoubleBlackChildToSingleAfterDeletion(givenNode);
             parent->left = nullptr;
+            delete givenNode->voter;
             delete givenNode;
             return;
         }
@@ -299,6 +372,7 @@ void RedBlackTree::deleteNode(RedBlackTreeNode* givenNode) {
         if(areBothNodesBlack) {
             convertDoubleBlackChildToSingleAfterDeletion(givenNode);
             parent->right = nullptr;
+            delete givenNode->voter;
             delete givenNode;
             return;
         }
@@ -313,11 +387,13 @@ void RedBlackTree::deleteNode(RedBlackTreeNode* givenNode) {
         // Delete givenNode
         if( givenNode->isLeftChild() ) {
             parent->left = nullptr;
+            delete givenNode->voter;
             delete givenNode;
             return;
         }
 
         parent->right = nullptr;
+        delete givenNode->voter;
         delete givenNode;
         return;
     }

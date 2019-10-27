@@ -16,7 +16,7 @@ class RegistryReader {
             BloomFilter*,
             PostalCodesLinkedList*
         );
-        void readAndUpdateStructures();
+    BloomFilter* readAndUpdateStructures();
     private:
         char* inputFilename;
         RedBlackTree* votersRBTree;

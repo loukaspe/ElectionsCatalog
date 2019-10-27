@@ -20,7 +20,7 @@ RegistryReader::RegistryReader(
     this->postalCodesLinkedList = postalCodesLinkedList;
 }
 
-void RegistryReader::readAndUpdateStructures() {
+BloomFilter* RegistryReader::readAndUpdateStructures() {
     if(inputFilename == nullptr) {
         Helper::handleError(NO_INPUT_FILE_ERROR);
     }
@@ -35,9 +35,7 @@ void RegistryReader::readAndUpdateStructures() {
     int age;
     char gender;
     int postalCode;
-    PostalCodesLinkedListNode* tempPostalCodesNode = (
-            PostalCodesLinkedListNode*
-    ) malloc( sizeof(PostalCodesLinkedListNode) );
+    PostalCodesLinkedListNode* tempPostalCodesNode;
 
     inputFile = fopen(inputFilename, OPEN_FILE_READ_MODE);
     if(inputFile == nullptr) {
@@ -101,5 +99,8 @@ void RegistryReader::readAndUpdateStructures() {
     }
 
     free(line);
+    fflush(inputFile);
     fclose(inputFile);
+
+    return votersBloomFilter;
 }

@@ -28,7 +28,6 @@ void BloomFilterFactory::setBitsFromRedBlackTreeInOrder (
     }
 
     setBitsFromRedBlackTreeInOrder(node->left, bloomFilter);
-    //std::cout << "To insert " << endl;
     bloomFilter->add( node->voter->getId() );
     setBitsFromRedBlackTreeInOrder(node->right, bloomFilter);
 }

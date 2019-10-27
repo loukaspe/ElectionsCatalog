@@ -6,43 +6,11 @@
 
 #include "BloomFilter.h"
 
-//const char* BloomFilter::DIVISION_BY_ZERO_ERROR = "ERROR: Cannot divide by zero.\n";
-const char* BloomFilter::MEMORY_ALLOCATION_ERROR = "ERROR: Cannot allocate memory for digests\n";
-
 /* Const number of Hash Functions that will be used in the Bloom Filter
  * based on your propositions in section 6 of the given
  * PDF in http://cgi.di.uoa.gr/~ad/k22/Bloom_Filters.pdf */
 
 const int BloomFilter::NUMBER_OF_HASH_FUNCTIONS = 3;
-
-/* Returns the optimal size of the Bloom Filter based on section 4 of the given
- * PDF in http://cgi.di.uoa.gr/~ad/k22/Bloom_Filters.pdf */
-
-//int BloomFilter::calculateOptimalSize(
-//    int numberOfElements,
-//    double desiredFalsePositivePropability
-//) {
-//    double dividend = -((double)numberOfElements) * log(desiredFalsePositivePropability);
-//    double divisor = pow(log(2),2);
-//    if(divisor == 0) {
-//        Helper::handleError(BloomFilter::DIVISION_BY_ZERO_ERROR);
-//    }
-//
-//    return (int) (dividend/divisor);
-//}
-
-//BloomFilter::BloomFilter(
-//    int numberOfElements,
-//    double desiredFalsePositivePropability
-//): falsePositivePropability(desiredFalsePositivePropability)
-//{
-//    this->size = BloomFilter::calculateOptimalSize(
-//        numberOfElements,
-//        desiredFalsePositivePropability
-//    );
-//
-//    this->bitArray = new BitArray(numberOfElements);
-//}
 
 BloomFilter::BloomFilter(int size): size(size)
 {
@@ -80,7 +48,6 @@ unsigned long BloomFilter::secondHashFunction(char* key) {
 
 unsigned long* BloomFilter::getHashDigests(char* key) {
 
-   // unsigned long digests[BloomFilter::NUMBER_OF_HASH_FUNCTIONS] = {};
     unsigned long* digests = (unsigned long*) malloc( BloomFilter::NUMBER_OF_HASH_FUNCTIONS * sizeof(unsigned long) );
 
     int i;
@@ -101,7 +68,6 @@ void BloomFilter::add(char* key) {
     for(int i = 0; i < NUMBER_OF_HASH_FUNCTIONS; i++) {
         bitArray->setBit(digests[i]);
         assert( bitArray->isSet( digests[i] ) );
-        //std::cout << "Inserted" << std::endl;
     }
 }
 

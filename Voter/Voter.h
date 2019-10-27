@@ -25,5 +25,4 @@ public:
         bool hasVoted;
 };
 
-
 #endif //UNTITLED_VOTER_H

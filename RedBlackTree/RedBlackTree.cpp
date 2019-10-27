@@ -107,7 +107,6 @@ void RedBlackTree::insertVoterToTree(Voter* voter) {
 
     // If the root is null then insert as root
     if(root == nullptr) {
-        //cout << "Root Created" << endl;
         newNode->color = BLACK;
         root = newNode;
         size++;
@@ -132,7 +131,6 @@ void RedBlackTree::insertVoterToTree(Voter* voter) {
         temp->left = newNode;
         size++;
         fixAdjacentRedNodesViolation(newNode);
-        //cout << "Voter " << voterNode->getId() << " INSERTED" << endl;
         return;
     }
 
@@ -140,7 +138,6 @@ void RedBlackTree::insertVoterToTree(Voter* voter) {
     temp->right = newNode;
     size++;
     fixAdjacentRedNodesViolation(newNode);
-    //cout << "Voter " << voterNode->getId() << " INSERTED" << endl;
 }
 
 void RedBlackTree::deleteVoterFromTree(Voter* voter) {
@@ -169,26 +166,6 @@ void RedBlackTree::deleteVoterFromTree(Voter* voter) {
     if(hasVoterVoted) {
         votersThatHaveVoted--;
     }
-}
-
-// prints inorder of the tree
-void RedBlackTree::printInOrder() {
-    cout << "Inorder: " << endl;
-    if (root == NULL)
-        cout << "Tree is empty" << endl;
-    else
-        inorder(root);
-    cout << endl;
-}
-
-// prints level order of the tree
-void RedBlackTree::printLevelOrder() {
-    cout << "Level order: " << endl;
-    if (root == NULL)
-        cout << "Tree is empty" << endl;
-    else
-        levelOrder(root);
-    cout << endl;
 }
 
 void RedBlackTree::rotateLeft(RedBlackTreeNode* node) {
@@ -525,43 +502,4 @@ void RedBlackTree::convertDoubleBlackChildToSingleAfterDeletion(RedBlackTreeNode
     }
 
     parent->color = BLACK;
-}
-
-// prints level order for given node
-void RedBlackTree::levelOrder(RedBlackTreeNode *x) {
-    if (x == nullptr)
-        // return if node is null
-        return;
-
-    // queue for level order
-    std::queue<RedBlackTreeNode *> q;
-    RedBlackTreeNode *curr;
-
-    // push x
-    q.push(x);
-
-    while (!q.empty()) {
-        // while q is not empty
-        // dequeue
-        curr = q.front();
-        q.pop();
-
-        // print node value
-        cout << curr->voter->getId() << " ";
-
-        // push children to queue
-        if (curr->left != NULL)
-            q.push(curr->left);
-        if (curr->right != NULL)
-            q.push(curr->right);
-    }
-}
-
-// prints inorder recursively
-void RedBlackTree::inorder(RedBlackTreeNode *x) {
-    if (x == nullptr)
-        return;
-    inorder(x->left);
-    cout << x->voter->getId() << " ";
-    inorder(x->right);
 }

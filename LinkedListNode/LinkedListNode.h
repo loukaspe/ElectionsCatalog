@@ -11,11 +11,9 @@
 
 class LinkedListNode {
     public:
-        char* id;
         LinkedListNode* next;
         RedBlackTreeNode* voterNode;
         LinkedListNode(RedBlackTreeNode*);
-        LinkedListNode(LinkedListNode*);
 };
 
 

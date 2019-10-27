@@ -3,7 +3,7 @@
  * that is larger than the size of the RedBlackTree, which is also the number
  * of Voters) and will create it.
  *
- * This will have as result that we read the Registly file only once, to create
+ * This will have as result that we read the Registry file only once, to create
  * the RBT. Then we will use the BloomFilterFactory to create the BloomFilter
  * and not read the file another time. */
 
@@ -20,6 +20,5 @@ private:
     static void setBitsFromRedBlackTreeInOrder(RedBlackTreeNode*, BloomFilter*);
 
 };
-
 
 #endif //UNTITLED_BLOOMFILTERFACTORY_H

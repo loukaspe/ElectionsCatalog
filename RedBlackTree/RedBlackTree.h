@@ -25,8 +25,6 @@ public:
     Voter* findVoterWith(char*);
     void insertVoterToTree(Voter*);
     void deleteVoterFromTree(Voter*);
-    void printInOrder();
-    void printLevelOrder();
     void voteOfVoterWith(char*);
 private:
     int size;
@@ -40,8 +38,6 @@ private:
     RedBlackTreeNode* findNodeToReplaceDeletedNodeInBST(RedBlackTreeNode*);
     void deleteNode(RedBlackTreeNode*);
     void convertDoubleBlackChildToSingleAfterDeletion(RedBlackTreeNode*);
-    void levelOrder(RedBlackTreeNode *x);
-    void inorder(RedBlackTreeNode *x);
 };
 
 #endif //UNTITLED_REDBLACKTREE_H

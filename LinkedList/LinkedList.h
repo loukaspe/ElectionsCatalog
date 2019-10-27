@@ -7,20 +7,17 @@
 #include <iostream>
 #include "LinkedListNode/LinkedListNode.h"
 #include <cstring>
-#include <assert.h>
+#include <cassert>
 
 using namespace std;
 
 class LinkedList {
     public:
         LinkedList();
-        void print();
         void addAtStart(RedBlackTreeNode*);
         void deleteNodeWithId(char*);
-        void deleteAll();
         int getSize();
         bool isEmpty();
-        LinkedListNode* findVoterWithId(char*);
         int getHowManyVotersHaveVoted();
     private:
         LinkedListNode* head;

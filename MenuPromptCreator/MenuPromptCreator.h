@@ -1,7 +1,7 @@
 /* This class is the one that will create and show the menu prompt for the commands
  * the user will give. According to this https://piazza.com/class/k1631q2t5o11rj?cid=20
  * all the answers and errors of these commands will be shown in the prompt and
- * not in the output file, whick will only contain a "iamge" of the Registry at the
+ * not in the output file, which will only contain a "image" of the Registry at the
  * time. Also, according to this https://piazza.com/class/k1631q2t5o11rj?cid=37
  * errors will be shown in stdout*/
 

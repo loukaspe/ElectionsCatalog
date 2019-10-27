@@ -30,21 +30,6 @@ char* Helper::copyString(char* source) {
     return destination;
 }
 
-char *Helper::concatString(char* destination, char* source) {
-    char* result = (char*) malloc(
-        strlen(destination) + strlen(source) + 1                           // + 1 is for the NULL Pointer
-    );
-
-    if(result == nullptr) {
-        fprintf(stderr, "%s",STRING_CONCAT_ERROR);
-        exit(EXIT_FAILURE);
-    }
-
-    strcpy(result, destination);
-    strcat(result, source);
-    return result;
-}
-
 /* Very Simple and Inefficient function. Did not give enough attention to this
  * part of the Assessment due to lack of time */
 int Helper::findFirstPrimeLargerThan(int n) {

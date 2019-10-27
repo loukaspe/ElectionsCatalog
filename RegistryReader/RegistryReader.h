@@ -28,8 +28,6 @@ class RegistryReader {
     static const char* SPACE_DELIMITER;
     static const char* ERROR_IN_READING_FILE;
     static const bool INITIAL_HAS_VOTED_FALSE;
-
 };
-
 
 #endif //UNTITLED_REGISTRYREADER_H

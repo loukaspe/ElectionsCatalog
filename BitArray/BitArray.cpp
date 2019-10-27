@@ -30,29 +30,10 @@ void BitArray::setBit(int position) {
     this->bitArray[position/32] |= 1 << (position%32);
 }
 
-void BitArray::clearBit(int position) {
-    this->bitArray[position/32] &= ~(1 << (position%32));
-}
-
-void BitArray::clearAll() {
-    int i;
-    for(i = 0; i < this->size; i++) {
-        BitArray::clearBit(i);
-    }
-}
-
 int BitArray::isSet(int position) {
     if ( (this->bitArray[position/32] & (1 << (position%32) )) != 0 ) {
         return BitArray::IS_SET;   
     }
             
     return BitArray::IS_NOT_SET;
-}
-
-void BitArray::print() {
-    int i;
-    for(i = 0; i < this->size; i++) {
-        std::cout << BitArray::isSet(i) << ' ';
-    }
-    std::cout << std::endl;
 }

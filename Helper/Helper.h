@@ -13,7 +13,6 @@
 class Helper {
     public:
         static char* copyString(char*);
-        static char* concatString(char*, char*);
         static void handleError(const char*);
         static int findFirstPrimeLargerThan(int);
         static bool inArray(char*, char**, int);
@@ -24,6 +23,5 @@ class Helper {
         static bool isPrime(int);
         static bool hasStringNewLineCharacterInTheEnd(char*);
 };
-
 
 #endif //UNTITLED_HELPER_H

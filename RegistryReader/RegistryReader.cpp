@@ -63,7 +63,6 @@ BloomFilter* RegistryReader::readAndUpdateStructures() {
         temp = strtok(nullptr, SPACE_DELIMITER);
         postalCode = atoi( Helper::copyString(temp) );
 
-        //cout << "\t" << id << " "  << firstName << " "  << lastName << " "  << age << " "  << gender << " "  << postalCode << endl;
         Voter* newVoter = new Voter (
                 id,
                 firstName,

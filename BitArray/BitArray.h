@@ -10,10 +10,7 @@ class BitArray {
         BitArray(int);
         ~BitArray();
         void setBit(int);
-        void clearBit(int);
-        void clearAll();
         int isSet(int);
-        void print();
     private:
         int size;
         int* bitArray;

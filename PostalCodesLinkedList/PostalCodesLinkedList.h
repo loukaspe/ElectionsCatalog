@@ -17,16 +17,11 @@
 class PostalCodesLinkedList {
 public:
     PostalCodesLinkedList();
-    void print();
     void addAtStart(int);
-    void deleteNodeWithPostalCode(int);
-    void deleteAll();
     void deleteVoterWithId(int, char*);
     void getPercentageOfVotersThatHaveVotedForEveryPostalCode();
-    int getSize();
     int getHowManyVotersHaveVotedInPostalCode(int);
     int getVotersInPostalCode(int);
-    double getPercentageOfVotersThatHaveVotedInPostalCode(int);
     bool isEmpty();
     PostalCodesLinkedListNode* findNodeWithPostalCode(int);
 private:

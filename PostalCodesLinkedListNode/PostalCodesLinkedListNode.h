@@ -15,7 +15,6 @@ class PostalCodesLinkedListNode {
         PostalCodesLinkedListNode* next;
         LinkedList* list;
         PostalCodesLinkedListNode(int);
-        //PostalCodesLinkedListNode(PostalCodesLinkedListNode*);
 };
 
 

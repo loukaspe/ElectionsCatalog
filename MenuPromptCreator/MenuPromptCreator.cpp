@@ -188,8 +188,6 @@ void MenuPromptCreator::readInput(char** &returnedCommand) {
         temp = strtok(nullptr, SPACE_DELIMITER);
         postalCode = Helper::copyString(temp);
 
-        //cout << "\t" << id << " "  << firstName << " "  << lastName << " "  << age << " "  << gender << " "  << postalCode << endl;
-
         returnedCommand = (char**) malloc( 7 * sizeof(char*) );
         returnedCommand[0] = Helper::copyString(command);
         returnedCommand[1] = Helper::copyString(id);

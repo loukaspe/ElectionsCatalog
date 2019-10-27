@@ -6,10 +6,3 @@ PostalCodesLinkedListNode::PostalCodesLinkedListNode(int postalCode) {
     this->list = new LinkedList();
 }
 
-//PostalCodesLinkedListNode::PostalCodesLinkedListNode(
-//        PostalCodesLinkedListNode* node
-//) {
-//        this->postalCode = node->postalCode;
-//        this->next = null;
-//        this->list
-//}

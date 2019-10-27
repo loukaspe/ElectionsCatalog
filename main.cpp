@@ -53,10 +53,6 @@ int main(int argc, char *argv[]) {
         postalCodesLinkedList,
         numOfUpdates
     );
-
     menuPromptCreator->create();
-    //votersRBTree->printInOrder();
-    //postalCodesLinkedList->print();
-
     return 0;
 }
